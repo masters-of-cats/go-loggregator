@@ -150,6 +150,9 @@ func (c *Client) promoteToContainerMetric(w envelopeWrapper) bool {
 		case "disk_quota":
 			allPresent |= 16
 			cMetric.DiskBytesQuota = proto.Uint64(uint64(m.GetValueMetric().GetValue()))
+		case "cpu_weighted":
+			// cpu_weighted is optional
+			cMetric.CpuPercentageWeighted = proto.Float64(m.GetValueMetric().GetValue())
 		default:
 			break
 		}
